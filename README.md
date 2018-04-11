@@ -2,7 +2,7 @@
 
 *前言：项目需要重构网络框架，跟着公司的一位同事一起弄的，有些地方还是理解的不太透彻，所以有此博文记录下以后便于学习。*
 
-######框架要灵活的话，使用什么样的设计模式会比较好呢？
+### 框架要灵活的话，使用什么样的设计模式会比较好呢？
 需求是需要传入参数并且没有顺序的要求，传入什么用什么的的这种模式的话，那建造者模式是再好不过了。
 
 - 首先Retrofit的使用必须要有一个接口就是一个Service，这个Service里面定义了一系列的方法，用来具体的请求
@@ -53,7 +53,7 @@ public final class RestCreator {
     }
 }
 ```
-######RestClient使用建造者模式
+### RestClient使用建造者模式
 - RestClientBuilder 把建造者和它的宿主分隔开来，就不用静态内部类了
 ```
 //
@@ -108,7 +108,7 @@ public class RestClient {
 ```
 Ps：建造者模式写起来真的好烦好烦好烦啊啊啊！！！有没有啥工具能一次生成它- -、
 
-######创建Package callback 里面主要处理一些回调(请求成功、失败、异常)
+### 创建Package callback 里面主要处理一些回调(请求成功、失败、异常)
 ![callback目录结构](https://upload-images.jianshu.io/upload_images/11184437-79588776dd6272e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - RequestCallbacks实现retrofit2的Callback接口
@@ -133,7 +133,7 @@ public final class RequestCallbacks implements Callback<String> {
 }
 ```
 
-###### DownLoad
+### DownLoad
 
 因为前面提到了为了避免内存溢出所以加上了`@Streaming`注解，所以是边下载，边写入。所以下载步骤要放在异步的线程去处理
 - SaveFileTask
@@ -206,7 +206,7 @@ public class DownloadHandler {
     }
 }
 ```
-######RxJava简单整合
+### RxJava简单整合
 改造RestService
 Call改成Observable
 Observable：可观察对象(基于Observable来进行相应的链式、响应式、观察式的操作)
